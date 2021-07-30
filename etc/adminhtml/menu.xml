@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Task_GenerateToken::view" title="Get Token" module="Task_GenerateToken" sortOrder="12" action="generate_token/token/index" resource="Task_GenerateToken::view"/>
+    </menu>
+</config>

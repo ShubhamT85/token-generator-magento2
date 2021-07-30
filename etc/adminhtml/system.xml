@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="generate_token" translate="label" sortOrder="10">
+            <label>Generate Token</label>
+        </tab>
+        <section id="token" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Token Settings</label>
+            <tab>generate_token</tab>
+            <resource>Task_GenerateToken::token_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="1">
+                <label>General Configuration</label>
+                <field id="root_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Magento Root URL</label>
+                    <comment>Eg : http://127.0.0.1/magento</comment>
+                </field>
+                <field id="admin_name" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Admin Username</label>
+                    <comment>Case Sensitive !!</comment>
+                </field>
+                <field id="admin_password" translate="label" type="password" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Admin Password</label>
+                    <comment>Case Sensitive !!</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

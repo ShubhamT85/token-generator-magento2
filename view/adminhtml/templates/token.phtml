@@ -1,0 +1,56 @@
+<?php
+/**
+ * @var Task\GenerateToken\Block\Adminhtml\Display\Token $block
+ */
+
+const XML_PATH_ROOT = 'token/general/root_url';
+const XML_PATH_USER = 'token/general/admin_name';
+const XML_PATH_PASS = 'token/general/admin_password';
+
+$admin = trim($block->getConfigValue(constant('XML_PATH_ROOT')));
+$username = trim($block->getConfigValue(constant('XML_PATH_USER')));
+$password = trim($block->getConfigValue(constant('XML_PATH_PASS')));
+
+$path = "/index.php/rest/V1/integration/admin/token";
+
+$url = $admin . $path;
+
+//cURL to get admin token
+$curl = curl_init();
+
+$data = array(
+    "username" => $username,
+    "password" => $password,
+);
+$data_string = json_encode($data);
+
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+$token = curl_exec($curl);
+?>
+
+
+<!--view form of token with copy feature-->
+<style>
+    input {
+        padding : 6px;
+        width : 25%;
+    }
+</style>
+<input type="text" value="<?php echo json_decode($token); ?>" id="myInput">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<button onclick="myFunction()">Copy Token</button>
+
+<script>
+function myFunction() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+//   alert("Copied the text: " + copyText.value);
+}
+</script>
